@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Footer from "../../components/footer";
 import { ArrowLeft, MapPin, Phone, Mail, Globe, Building2, ShieldCheck, Wrench } from "lucide-react";
 
-// Inline SVGs for specific icons to guarantee no build errors
+// === Bulletproof Inline SVGs ===
+const MessageCircle = (p: any) => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...p}><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>;
 const StethoscopeIcon = (props: any) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter" {...props}><path d="M4.8 2.3A.3.3 0 0 0 5 2h14a.3.3 0 0 0 .2.3v3.3a.3.3 0 0 0-.2.3H5a.3.3 0 0 0-.2-.3z"/><path d="M15 13a5 5 0 0 0-10 0"/><path d="M8 13v4a2 2 0 0 0 4 0v-3"/><circle cx="10" cy="19" r="2"/></svg>;
 const FlaskIcon = (props: any) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter" {...props}><path d="M10 2v7.31"/><path d="M14 2v7.31"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>;
 const ScanIcon = (props: any) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter" {...props}><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg>;
@@ -11,13 +13,13 @@ const ScanIcon = (props: any) => <svg xmlns="http://www.w3.org/2000/svg" width="
 export default function About() {
   return (
     <main className="min-h-screen bg-[#F5F1E8] text-[#1a1a1a]">
-        {/* ═══════════ TOP BANNER ═══════════ */}
+      {/* ═══════════ TOP BANNER ═══════════ */}
       <div className="border-b border-[#1a1a1a]/10 bg-[#EDE7D7]">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-2.5 flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="small-caps text-[#1a1a1a]/70 flex flex-wrap items-center gap-4 sm:gap-6 text-xs uppercase tracking-wider">
-            <span className="flex items-center gap-1.5"><Phone /> +254 721 209 699</span>
-            <span className="flex items-center gap-1.5"><Phone /> +254 792 415 615</span>
-            <span className="flex items-center gap-1.5"><Mail /> sales@sedahealthcare.co.ke</span>
+            <span className="flex items-center gap-1.5"><Phone size={14} /> +254 792 415 615</span>
+            <span className="flex items-center gap-1.5"><Phone size={14} /> +254 721 209 699</span>
+            <span className="flex items-center gap-1.5"><Mail size={14} /> sales@sedahealthcare.co.ke</span>
           </div>
           <div className="small-caps text-[#1a1a1a]/70 text-xs uppercase tracking-wider">
             Mon – Fri · 08:00 – 17:00 EAT
@@ -25,11 +27,11 @@ export default function About() {
         </div>
       </div>
 
-      {/* Header */}
+      {/* ═══════════ HEADER ══════════ */}
       <header className="sticky top-0 z-40 bg-[#F5F1E8]/95 backdrop-blur border-b border-[#1a1a1a]/10">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3">
-            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-50 md:h-47 w-auto" />
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex justify-between items-center">
+          <Link href="/" className="flex items-center gap-3 px-3 py-2 rounded-sm">
+            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-8 md:h-50 w-auto" />
           </Link>
           <Link href="/" className="flex items-center gap-2 text-xs uppercase tracking-wider text-[#1a1a1a] hover:text-[#3FA89A] transition-colors">
             <ArrowLeft size={14} />
@@ -38,7 +40,19 @@ export default function About() {
         </div>
       </header>
 
-      {/* Main Content */}
+      {/* ═══════════ FLOATING QUOTE BUTTONS ═══════════ */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <a href="https://wa.me/254792415615?text=Hello%20Seda%20Healthcare%2C%20I%20would%20like%20to%20request%20a%20quotation." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-sm shadow-lg hover:bg-[#20BA5A] transition-colors group">
+          <MessageCircle size={18} />
+          <span className="text-xs font-semibold uppercase tracking-wider hidden sm:block">Request Quote</span>
+        </a>
+        {/* <a href="https://wa.me/254721209699?text=Hello%20Seda%20Healthcare%2C%20I%20would%20like%20to%20request%20a%20quotation." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-sm shadow-lg hover:bg-[#20BA5A] transition-colors group">
+          <MessageCircle size={18} />
+          <span className="text-xs font-semibold uppercase tracking-wider hidden sm:block">Alternative Contact</span>
+        </a> */}
+      </div>
+
+      {/* ═══════════ MAIN CONTENT ═══════════ */}
       <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         
         {/* Hero Section */}
@@ -132,7 +146,7 @@ export default function About() {
         </div>
 
         {/* Location & Contact */}
-        <div className="bg-[#1a1a1a] text-white p-8 sm:p-12 lg:p-16">
+        {/* <div className="bg-[#1a1a1a] text-white p-8 sm:p-12 lg:p-16">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
             <div>
               <div className="uppercase tracking-wider text-[#3FA89A] text-xs mb-4">Visit Our Offices</div>
@@ -148,8 +162,8 @@ export default function About() {
                 <div className="flex items-start gap-4">
                   <Phone size={18} className="text-[#3FA89A] mt-1 shrink-0" />
                   <div className="text-white/90">
-                    <div>+254 721 209 699</div>
                     <div>+254 792 415 615</div>
+                    <div>+254 721 209 699</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -170,7 +184,7 @@ export default function About() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
-                  href="https://wa.me/254721209699?text=Hello%20Seda%20Healthcare%2C%20I%20would%20like%20to%20schedule%20a%20consultation."
+                  href="https://wa.me/254792415615?text=Hello%20Seda%20Healthcare%2C%20I%20would%20like%20to%20schedule%20a%20consultation."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-3 text-xs uppercase tracking-wider hover:bg-white hover:text-[#25D366] transition-colors"
@@ -186,9 +200,13 @@ export default function About() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
       </section>
+
+      {/* ═══════════ SHARED FOOTER ═══════════ */}
+      <Footer />
+      
     </main>
   );
 }
