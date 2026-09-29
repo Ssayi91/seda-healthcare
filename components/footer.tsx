@@ -32,7 +32,7 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <span className="small-caps text-[#1a1a1a]/60 block mb-4 text-xs uppercase tracking-wider">Correspondence</span>
             <address className="not-italic font-serif space-y-2 text-[#1a1a1a]/80 text-sm">
-              <p>Seda House, along Eastern Bypass</p>
+              <p>Springfield Green Court, Kibiku Road, Utawala-Eastern Bypass.</p>
               <p>Nairobi, Kenya</p>
               <p className="mt-4">+254 792 415 615</p>
               <p>+254 721 209 699</p>
@@ -43,10 +43,10 @@ export default function Footer() {
             <div className="mt-6">
               <span className="small-caps text-[#1a1a1a]/60 block mb-3 text-xs uppercase tracking-wider">Follow Us</span>
               <div className="flex gap-4">
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a]/60 hover:text-[#3FA89A] transition-colors"><LinkedInIcon /></a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a]/60 hover:text-[#3FA89A] transition-colors"><FacebookIcon /></a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a]/60 hover:text-[#3FA89A] transition-colors"><InstagramIcon /></a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a]/60 hover:text-[#3FA89A] transition-colors"><TikTokIcon /></a>
+                <a href="https://www.linkedin.com/company/seda-healthcare-solutions-ltd/home/" target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a]/60 hover:text-[#3FA89A] transition-colors"><LinkedInIcon /></a>
+                <a href="https://www.facebook.com/sedahealthcaresolutionsltd" target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a]/60 hover:text-[#3FA89A] transition-colors"><FacebookIcon /></a>
+                <a href="https://www.instagram.com/sedahealthcare/" target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a]/60 hover:text-[#3FA89A] transition-colors"><InstagramIcon /></a>
+                <a href="https://www.tiktok.com/@sedahealthcare" target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a]/60 hover:text-[#3FA89A] transition-colors"><TikTokIcon /></a>
               </div>
             </div>
           </div>
