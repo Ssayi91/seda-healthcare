@@ -15,7 +15,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <main className="bg-[#F5F1E8] text-[#1a1a1a]">
+    <main className="bg-[#F5F1E8] text-[#1a1a1a] overflow-x-hidden">
       {/* ═══════════ TOP BANNER ═══════════ */}
       <div className="border-b border-[#1a1a1a]/10 bg-[#EDE7D7]">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-2.5 flex flex-col sm:flex-row justify-between items-center gap-2">
@@ -34,7 +34,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-[#F5F1E8]/95 backdrop-blur-md border-b border-[#1a1a1a]/10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex justify-between items-center">
           <a href="/" className="flex items-center gap-3 px-3 py-2 rounded-sm">
-            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-8 md:h-50 w-auto" />
+            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-10 md:h-45 w-auto" />
           </a>
 
           <nav className="hidden md:flex items-center gap-10">
@@ -78,13 +78,9 @@ export default function Home() {
           <MessageCircle size={18} />
           <span className="text-xs font-semibold uppercase tracking-wider hidden sm:block">Request Quote</span>
         </a>
-        {/* <a href="https://wa.me/254721209699?text=Hello%20Seda%20Healthcare%2C%20I%20would%20like%20to%20request%20a%20quotation." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-sm shadow-lg hover:bg-[#20BA5A] transition-colors group">
-          <MessageCircle size={18} />
-          <span className="text-xs font-semibold uppercase tracking-wider hidden sm:block">Alternative Contact</span>
-        </a> */}
       </div>
 
-      {/* ═══════════ HERO SECTION ═══════════ */}
+      {/* ═══════════ HERO SECTION (REMAINS EXACTLY THE SAME) ═══════════ */}
       <section id="home" className="border-b border-[#1a1a1a]/10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-20 lg:py-32">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -114,9 +110,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════ ABOUT US ═══════════ */}
-      <section id="about-us" className="border-b border-[#1a1a1a]/10 bg-[#EDE7D7]">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+      {/* ═══════════ ABOUT US (VIBRANT PARALLAX) ═══════════ */}
+      <section id="about-us" className="relative border-b border-[#1a1a1a]/10 overflow-hidden">
+        <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/hospital-bed_yaxees.jpg')" }}></div>
+        {/* Lowered opacity + subtle teal gradient for vibrant pop while keeping text readable */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#F5F1E8]/90 via-[#F5F1E8]/75 to-[#3FA89A]/20"></div>
+        
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
           <div className="grid lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-5">
               <span className="small-caps text-[#1a1a1a]/60 block mb-3 text-xs uppercase tracking-wider">About Us</span>
@@ -131,9 +131,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════ DEPARTMENTS PREVIEW ═══════════ */}
-      <section id="departments" className="border-b border-[#1a1a1a]/10">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+      {/* ═══════════ DEPARTMENTS PREVIEW (VIBRANT PARALLAX) ═══════════ */}
+      <section id="departments" className="relative border-b border-[#1a1a1a]/10 overflow-hidden">
+        <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790614742/diagnostic-lab-equipment-categories-pathology-clinical-automation-tools_wmmphr.webp')" }}></div>
+        {/* Lowered opacity allows the vibrant lab image to shine through the cards */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/75 to-[#3FA89A]/15"></div>
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
             <div>
               <span className="small-caps text-[#1a1a1a]/60 block mb-3 text-xs uppercase tracking-wider">Our Disciplines</span>
@@ -151,7 +155,7 @@ export default function Home() {
               { title: "Medical & General Wards", desc: "Single and double-crank hospital beds, patient monitors, oxygen concentrators, and ward furniture.", img: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/hospital-bed_yaxees.jpg" },
               { title: "Orthopedic & Rehabilitation", desc: "Wheelchairs, crutches, TENS machines, plaster cutters, and therapeutic support braces.", img: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790625228/wheelchair-walking-frame-and-crutches-isolated-on-white-background_vjz0wn.webp" },
             ].map((dept, i) => (
-              <article key={i} className="group border border-[#1a1a1a]/10 bg-white hover:border-[#3FA89A] transition-colors duration-300">
+              <article key={i} className="group border border-[#1a1a1a]/10 bg-white/90 backdrop-blur-sm hover:border-[#3FA89A] hover:shadow-xl transition-all duration-300">
                 <div className="aspect-[16/10] overflow-hidden">
                   <img src={dept.img} alt={dept.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
@@ -166,9 +170,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════ SOURCING PHILOSOPHY ═══════════ */}
-      <section className="border-b border-[#1a1a1a]/10 bg-[#1a1a1a] text-white">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+      {/* ═══════════ SOURCING PHILOSOPHY (ALREADY VIBRANT, KEPT INTACT) ═══════════ */}
+      <section className="relative border-b border-[#1a1a1a]/10 overflow-hidden">
+        <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790624768/IMG_0203-1024x768_ana2es.webp')" }}></div>
+        <div className="absolute inset-0 bg-[#1a1a1a]/92"></div>
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
           <div className="grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-5">
               <span className="small-caps text-white/50 block mb-3 text-xs uppercase tracking-wider">Our Standards</span>
@@ -197,9 +204,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════ CONTACT / INQUIRY ═══════════ */}
-      <section id="contact" className="border-b border-[#1a1a1a]/10">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+      {/* ═══════════ CONTACT / INQUIRY (VIBRANT PARALLAX) ═══════════ */}
+      <section id="contact" className="relative border-b border-[#1a1a1a]/10 overflow-hidden">
+        <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/dental-unit_vlpp5v.jpg')" }}></div>
+        {/* Vibrant gradient overlay: light top fading to a rich teal tint at the bottom */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#F5F1E8]/85 via-[#F5F1E8]/70 to-[#3FA89A]/30"></div>
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
           <div className="grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-6">
               <span className="small-caps text-[#1a1a1a]/60 block mb-3 text-xs uppercase tracking-wider">Contact Us</span>
