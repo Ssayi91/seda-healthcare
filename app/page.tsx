@@ -99,7 +99,8 @@ export default function Home() {
             </div>
             <div className="lg:col-span-5 relative">
               <div className="aspect-[4/5] overflow-hidden border border-[#1a1a1a]/10 bg-white shadow-lg">
-                <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609565/surgical-equipment_cswk5s.jpg" alt="Modern surgical theatre equipment" className="w-full h-full object-contain" />
+                <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790855820/surgical-equipment_cswk5s-removebg-preview_w5v0ht.pngtes
+                " alt="Modern surgical theatre equipment" className="w-full h-full object-contain" />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white p-6 border border-[#1a1a1a]/10 shadow-lg max-w-xs hidden md:block">
                 <p className="font-display text-xl italic text-[#3FA89A] mb-2">"The instrument precedes the outcome."</p>
