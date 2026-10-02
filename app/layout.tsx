@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Serif_4, Inter } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "../components/CartContext"; // Import the cart context
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -32,7 +33,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${cormorant.variable} ${sourceSerif.variable} ${inter.variable} font-serif antialiased text-dark bg-paper`}>
-        {children}
+        {/* Wrap children in CartProvider to enable global cart state */}
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
     </html>
   );
