@@ -47,7 +47,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-[#F5F1E8]/95 backdrop-blur-md border-b border-[#1a1a1a]/10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex justify-between items-center">
           <a href="/" className="flex items-center gap-3">
-            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-10 md:h-12 w-auto" />
+            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-10 md:h-45 w-auto" />
           </a>
 
           <nav className="hidden md:flex items-center gap-10">
