@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import Footer from "../../components/footer";
 import { 
   ArrowLeft, Search, MessageCircle, Stethoscope, Zap, Scissors, 
@@ -17,23 +16,36 @@ const SmilePlusIcon = (props: any) => <svg xmlns="http://www.w3.org/2000/svg" wi
 type CartItem = { name: string; category: string; qty: number };
 
 export default function Departments() {
-  const searchParams = useSearchParams();
-  const initialSearch = searchParams.get('search') || "";
+  const [searchQuery, setSearchQuery] = useState("");
   
-  const [searchQuery, setSearchQuery] = useState(initialSearch);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const initialSearch = params.get('search') || "";
+      setSearchQuery(initialSearch);
+    }
+  }, []);
+
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [expandedSubcats, setExpandedSubcats] = useState<Record<string, boolean>>({});
   
-  // Self-contained Cart State
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('seda_cart');
-    if (savedCart) { try { setCartItems(JSON.parse(savedCart)); } catch (e) {} }
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem('seda_cart');
+      if (savedCart) { 
+        try { setCartItems(JSON.parse(savedCart)); } catch (e) {} 
+      }
+    }
   }, []);
 
-  useEffect(() => { localStorage.setItem('seda_cart', JSON.stringify(cartItems)); }, [cartItems]);
+  useEffect(() => { 
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('seda_cart', JSON.stringify(cartItems)); 
+    }
+  }, [cartItems]);
 
   const addToCart = (name: string, category: string) => {
     setCartItems(prev => {
@@ -48,7 +60,7 @@ export default function Departments() {
   };
 
   const removeFromCart = (name: string) => setCartItems(prev => prev.filter(i => i.name !== name));
-  const clearCart = () => { setCartItems([]); localStorage.removeItem('seda_cart'); };
+  const clearCart = () => { setCartItems([]); if (typeof window !== 'undefined') localStorage.removeItem('seda_cart'); };
 
   const generateWhatsAppLink = () => {
     if (cartItems.length === 0) return "#";
@@ -58,7 +70,6 @@ export default function Departments() {
 
   const totalCartItems = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
-  // === CATEGORIES DATA ===
   const categories = [
     { id: "laboratory", title: "Laboratory & Diagnostics", description: "Where precision meets care. Complete diagnostic laboratory equipment, analyzers, and reagent ecosystems.", image: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790614742/diagnostic-lab-equipment-categories-pathology-clinical-automation-tools_wmmphr.webp", icon: FlaskConical, subcategories: [ { title: "Analyzers & Diagnostics", items: ["Haematology Analyzer (3-Part & 5-Part)", "Electrolyte Analyzer", "Finecare Immunoassay Analyser", "Semi & Fully Automated Biochemistry Machines", "Coagulation Machine"] }, { title: "Lab Equipment", items: ["Microscopes (X107, CX23)", "Centrifuges (6-Tube)", "Blood Roller Mixer", "Water Bath (15L)", "Laboratory Incubator & Oven", "Micropipettes (10-100, 100-1000)"] }, { title: "Reagents & Consumables", items: ["Haematology Reagents (Lyse, Diluent, Controls)", "Chemistry Reagents (HDL, Cholesterol, GT, ALAT)", "Immunoassay Reagents (CRP, PCT, D-Dimer, Hormones)", "Test Tubes, Vacutainers, Tips, Staining Solutions"] } ] },
     { id: "theatre", title: "Theatre & Surgical", description: "The heart of the hospital. Comprehensive surgical theatre equipment, specialized instrument sets, and consumables.", image: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790624768/IMG_0203-1024x768_ana2es.webp", icon: Scissors, subcategories: [ { title: "Major Theatre Equipment", items: ["Operating Theatre Lights (LED & Halogen)", "Operating Tables (Electric & Hydraulic)", "Anaesthesia Machines", "Electrosurgical Diathermy (300W & 400W)", "Defibrillators", "Patient Monitors (5 & 7 Parameter)", "Autoclaves (50L, 70L, 100L)"] }, { title: "Surgical Instrument Sets", items: ["General Sets (Major & Minor)", "Laparatomy, Craniotomy & Orthopedic Sets", "Tonsillectomy, Thyroidectomy & Lumbar Sets", "Manual & Electric Craniotomy Drills", "Laryngoscopes"] }, { title: "Theatre Consumables", items: ["Breathing Bags & Circuits", "Endotracheal & Tracheostomy Tubes", "Surgical Sutures (Monocryl, Nylon, Polyglactin, Catgut)", "Surgical Blades, Gloves, Masks & Aprons"] } ] },
@@ -102,7 +113,7 @@ export default function Departments() {
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-[#1a1a1a]/10 shadow-sm">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3 px-3 py-2 rounded-sm">
-            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-8 md:h-45 w-auto" />
+            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-8 md:h-10 w-auto" />
           </Link>
           <div className="flex items-center gap-4">
             <button onClick={() => setIsCartOpen(true)} className="relative p-2 hover:bg-[#1a1a1a]/5 rounded-sm transition-colors">
@@ -117,24 +128,27 @@ export default function Departments() {
       </header>
 
       {/* Global Search & Intro */}
-      <section className="bg-white border-b border-[#1a1a1a]/10 py-16 sm:py-24">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto">
-          <div className="inline-block bg-[#3FA89A]/10 text-[#3FA89A] px-4 py-1.5 text-xs uppercase tracking-[0.2em] font-bold mb-6">
+      <section className="relative bg-fixed bg-cover bg-center border-b border-[#1a1a1a]/10 py-16 sm:py-24" style={{ backgroundImage: "url('https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/hospital-bed_yaxees.jpg')" }}>
+        <div className="absolute inset-0 bg-[#1a1a1a]/85"></div>
+        <div className="absolute inset-0 bg-[#3FA89A]/10 mix-blend-overlay"></div>
+        
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto">
+          <div className="inline-block bg-[#3FA89A]/20 text-[#3FA89A] px-4 py-1.5 text-xs uppercase tracking-[0.2em] font-bold mb-6 backdrop-blur-sm border border-[#3FA89A]/30">
             Equipment Catalog
           </div>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-[#1a1a1a] mb-6 leading-[1.1]">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-[1.1]">
             Explore Our <span className="text-[#3FA89A] italic">Departments</span>
           </h1>
-          <p className="text-[#6B6F73] text-lg mb-10 leading-relaxed">
+          <p className="text-white/80 text-lg mb-10 leading-relaxed">
             Browse our comprehensively sub-categorized medical supplies. Find exactly what your facility needs, quickly and efficiently.
           </p>
           
           <div className="relative max-w-xl mx-auto">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#1a1a1a]/30" size={20} />
-            <input type="text" placeholder="Search equipment..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full pl-12 pr-12 py-4 bg-white border-2 border-[#1a1a1a]/10 text-base focus:outline-none focus:border-[#3FA89A] transition-colors shadow-sm" />
-            {searchQuery && <button onClick={() => setSearchQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#1a1a1a]/40 hover:text-[#1a1a1a]"><X size={20} /></button>}
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30" size={20} />
+            <input type="text" placeholder="Search equipment..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full pl-12 pr-12 py-4 bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-[#3FA89A] focus:bg-white/20 transition-colors shadow-sm backdrop-blur-sm" />
+            {searchQuery && <button onClick={() => setSearchQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white"><X size={20} /></button>}
           </div>
-          {searchQuery.trim() && <div className="mt-4 text-sm font-medium text-[#6B6F73]">Found <span className="text-[#3FA89A] font-bold">{totalItemsFound}</span> items.</div>}
+          {searchQuery.trim() && <div className="mt-4 text-sm font-medium text-white/70">Found <span className="text-[#3FA89A] font-bold">{totalItemsFound}</span> items.</div>}
         </div>
       </section>
 
@@ -156,7 +170,6 @@ export default function Departments() {
           const CategoryIcon = cat.icon;
           return (
             <div key={cat.id} className="group">
-              
               {/* === PARALLAX IMAGE BANNER STRIP === */}
               <div className="relative h-[40vh] min-h-[300px] bg-fixed bg-cover bg-center flex items-center" style={{ backgroundImage: `url('${cat.image}')` }}>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a]/95 via-[#1a1a1a]/70 to-[#1a1a1a]/30"></div>
@@ -175,38 +188,37 @@ export default function Departments() {
                 </div>
               </div>
 
-              {/* === SUBCATEGORIES (Clean White Section with Hover Image Background) === */}
+              {/* === SUBCATEGORIES (SIMPLIFIED & GUARANTEED TO WORK) === */}
               <div className="bg-white py-16 sm:py-24 border-b border-[#1a1a1a]/5">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                     {cat.subcategories.map((sub, subIdx) => {
                       const isExpanded = expandedSubcats[`${cat.id}-${subIdx}`] || !searchQuery;
                       return (
-                        <div key={subIdx} className="relative border border-[#1a1a1a]/5 bg-white rounded-sm overflow-hidden shadow-sm transition-all duration-500 hover:shadow-2xl hover:border-[#3FA89A]/30 group/subcat">
+                        // PARENT CONTAINER: Has the 'group' class to trigger child hover states
+                        <div key={subIdx} className="relative border border-[#1a1a1a]/10 bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
                           
-                          {/* HOVER BACKGROUND IMAGE EFFECT */}
+                          {/* 1. BACKGROUND IMAGE: Hidden by default, 100% visible on hover */}
                           <div 
-                            className="absolute inset-0 bg-cover bg-center opacity-0 group-hover/subcat:opacity-25 transition-all duration-700 scale-100 group-hover/subcat:scale-110 pointer-events-none"
+                            className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
                             style={{ backgroundImage: `url('${cat.image}')` }}
                           ></div>
-                          {/* Gradient overlay to keep text readable */}
-                          <div className="absolute inset-0 group-hover transition-all duration-500 pointer-events-none"></div>
-
-                          {/* ACTUAL CONTENT */}
-                          <div className="relative z-10">
-                            <button onClick={() => toggleSubcat(cat.id, subIdx)} className="w-full flex items-center justify-between p-6 bg-transparent hover:bg-[#3FA89A]/5 transition-colors text-left border-b border-[#1a1a1a]/5">
+                          
+                          {/* 2. CONTENT WRAPPER: Solid white by default. Becomes 60% transparent on hover so the image shines through clearly */}
+                          <div className="relative z-10 bg-white group-hover:bg-white/60 transition-colors duration-500">
+                            <button onClick={() => toggleSubcat(cat.id, subIdx)} className="w-full flex items-center justify-between p-6 hover:bg-white/40 transition-colors text-left border-b border-[#1a1a1a]/5">
                               <h3 className="font-display text-lg font-semibold text-[#1a1a1a]">{sub.title}</h3>
                               <ChevronDown size={18} className={`text-[#3FA89A] transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                             </button>
                             
                             {isExpanded && (
-                              <div className="p-4 bg-white/50 backdrop-blur-sm">
+                              <div className="p-4 bg-white/40 backdrop-blur-sm">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1">
                                   {sub.items.map((item, idx) => {
                                     const inCart = cartItems.find(i => i.name === item);
                                     return (
-                                      <div key={idx} className="flex items-center justify-between py-3 border-b border-[#1a1a1a]/5 last:border-0 group/item">
-                                        <span className="text-sm text-[#1a1a1a]/80 font-serif pr-4 leading-tight">{item}</span>
+                                      <div key={idx} className="flex items-center justify-between py-3 border-b border-[#1a1a1a]/10 last:border-0">
+                                        <span className="text-sm text-[#1a1a1a] font-medium pr-4 leading-tight">{item}</span>
                                         <button 
                                           type="button"
                                           onClick={() => addToCart(item, cat.title)}
