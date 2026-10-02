@@ -113,7 +113,7 @@ export default function Departments() {
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-[#1a1a1a]/10 shadow-sm">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3 px-3 py-2 rounded-sm">
-            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-8 md:h-10 w-auto" />
+            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-8 md:h-45 w-auto" />
           </Link>
           <div className="flex items-center gap-4">
             <button onClick={() => setIsCartOpen(true)} className="relative p-2 hover:bg-[#1a1a1a]/5 rounded-sm transition-colors">
