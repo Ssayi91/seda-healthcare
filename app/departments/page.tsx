@@ -6,7 +6,8 @@ import Footer from "../../components/footer";
 import { 
   ArrowLeft, Search, MessageCircle, Stethoscope, Zap, Scissors, 
   ClipboardList, Scan, Monitor, Baby, Bed, Eye, FlaskConical, 
-  Bone, Package, ChevronDown, Plus, ShoppingCart, X, Minus, Trash2, Check
+  Bone, Package, ChevronDown, Plus, ShoppingCart, X, Minus, Trash2, Check,
+  Phone, Mail
 } from "lucide-react";
 
 // Custom inline SVGs for specific icons
@@ -97,23 +98,25 @@ export default function Departments() {
   const visibleCategories = activeCategory ? filteredCategories.filter(cat => cat.id === activeCategory) : filteredCategories;
 
   return (
-    <main className="min-h-screen bg-[#FAFAF8] text-[#1a1a1a]">
+    <main className="min-h-screen bg-[#3FA89A] text-[#1a1a1a]">
       {/* Top Banner */}
-      <div className="border-b border-[#1a1a1a]/10 bg-[#F5F1E8]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs uppercase tracking-wider text-[#1a1a1a]/60">
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <span className="flex items-center gap-1.5 font-semibold text-[#3FA89A]">+254 792 415 615</span>
-            <span className="flex items-center gap-1.5">sales@sedahealthcare.co.ke</span>
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-2.5 flex flex-col sm:flex-row justify-between items-center gap-2">
+          <div className="small-caps text-[#1a1a1a]/70 flex flex-wrap items-center gap-4 sm:gap-6 text-xs uppercase tracking-wider">
+            <span className="flex items-center gap-1.5"><Phone /> +254 792 415 615</span>
+            <span className="flex items-center gap-1.5"><Phone /> +254 721 209 699</span>
+            <span className="flex items-center gap-1.5"><Mail /> sales@sedahealthcare.co.ke</span>
           </div>
-          <div>Mon – Fri · 08:00 – 17:00 EAT</div>
+          <div className="small-caps text-[#1a1a1a]/70 text-xs uppercase tracking-wider">
+            Mon – Fri · 08:00 – 17:00 EAT
+          </div>
         </div>
-      </div>
+
 
       {/* Header */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-[#1a1a1a]/10 shadow-sm">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3 px-3 py-2 rounded-sm">
-            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-8 md:h-45 w-auto" />
+            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-45 md:h-45 w-auto" />
           </Link>
           <div className="flex items-center gap-4">
             <button onClick={() => setIsCartOpen(true)} className="relative p-2 hover:bg-[#1a1a1a]/5 rounded-sm transition-colors">
@@ -188,7 +191,7 @@ export default function Departments() {
                 </div>
               </div>
 
-              {/* === SUBCATEGORIES (SIMPLIFIED & GUARANTEED TO WORK) === */}
+              {/* === SUBCATEGORIES (FULLY MOBILE RESPONSIVE) === */}
               <div className="bg-white py-16 sm:py-24 border-b border-[#1a1a1a]/5">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -198,14 +201,20 @@ export default function Departments() {
                         // PARENT CONTAINER: Has the 'group' class to trigger child hover states
                         <div key={subIdx} className="relative border border-[#1a1a1a]/10 bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
                           
-                          {/* 1. BACKGROUND IMAGE: Hidden by default, 100% visible on hover */}
+                          {/* 1. BACKGROUND IMAGE: 
+                              - Mobile: Always visible at 30% opacity (opacity-30)
+                              - Desktop (md:): Hidden by default (md:opacity-0), shows at 100% on hover (md:group-hover:opacity-100) 
+                          */}
                           <div 
-                            className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
+                            className="absolute inset-0 bg-cover bg-center opacity-30 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
                             style={{ backgroundImage: `url('${cat.image}')` }}
                           ></div>
                           
-                          {/* 2. CONTENT WRAPPER: Solid white by default. Becomes 60% transparent on hover so the image shines through clearly */}
-                          <div className="relative z-10 bg-white group-hover:bg-white/60 transition-colors duration-500">
+                          {/* 2. CONTENT WRAPPER: 
+                              - Mobile: Slightly transparent by default (bg-white/90) so image shows through
+                              - Desktop (md:): Solid white by default (md:bg-white), becomes 60% transparent on hover (md:group-hover:bg-white/60)
+                          */}
+                          <div className="relative z-10 bg-white/90 md:bg-white md:group-hover:bg-white/60 transition-colors duration-500">
                             <button onClick={() => toggleSubcat(cat.id, subIdx)} className="w-full flex items-center justify-between p-6 hover:bg-white/40 transition-colors text-left border-b border-[#1a1a1a]/5">
                               <h3 className="font-display text-lg font-semibold text-[#1a1a1a]">{sub.title}</h3>
                               <ChevronDown size={18} className={`text-[#3FA89A] transition-transform ${isExpanded ? 'rotate-180' : ''}`} />

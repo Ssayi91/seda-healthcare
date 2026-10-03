@@ -12,25 +12,25 @@ const ScanIcon = (props: any) => <svg xmlns="http://www.w3.org/2000/svg" width="
 
 export default function About() {
   return (
-    <main className="min-h-screen bg-white text-[#1a1a1a] overflow-x-hidden">
-      {/* ═══════════ TOP BANNER ═══════════ */}
-      <div className="border-b border-[#1a1a1a]/10 bg-[#F5F1E8]">
+    <main className="min-h-screen bg-[#3FA89A] text-[#1a1a1a]">
+      {/* Top Banner */}
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-2.5 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <div className="small-caps text-[#1a1a1a]/70 flex flex-wrap items-center gap-4 sm:gap-6 text-xs uppercase tracking-wider font-semibold">
-            <span className="flex items-center gap-1.5 text-[#3FA89A]"><Phone size={14} /> +254 792 415 615</span>
-            <span className="flex items-center gap-1.5"><Mail size={14} /> sales@sedahealthcare.co.ke</span>
+          <div className="small-caps text-[#1a1a1a]/70 flex flex-wrap items-center gap-4 sm:gap-6 text-xs uppercase tracking-wider">
+            <span className="flex items-center gap-1.5"><Phone /> +254 792 415 615</span>
+            <span className="flex items-center gap-1.5"><Phone /> +254 721 209 699</span>
+            <span className="flex items-center gap-1.5"><Mail /> sales@sedahealthcare.co.ke</span>
           </div>
           <div className="small-caps text-[#1a1a1a]/70 text-xs uppercase tracking-wider">
             Mon – Fri · 08:00 – 17:00 EAT
           </div>
         </div>
-      </div>
+
 
       {/* ═══════════ HEADER ══════════ */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-[#1a1a1a]/10 shadow-sm">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex justify-between items-center">
           <Link href="/" className="flex items-center">
-            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-10 md:h-45 w-auto" />
+            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-45 md:h-45 w-auto" />
           </Link>
           <Link href="/" className="flex items-center gap-2 text-xs uppercase tracking-wider text-[#1a1a1a] hover:text-[#3FA89A] transition-colors font-bold">
             <ArrowLeft size={14} />

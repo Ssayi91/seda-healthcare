@@ -9,7 +9,7 @@ const TikTokIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="18" heig
 
 export default function Footer() {
   return (
-    <footer className="bg-[#EDE7D7] border-t border-[#1a1a1a]/10">
+    <footer className="bg-[#ffffff] border-t border-[#3FA89A]/10">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-16">
         <div className="grid lg:grid-cols-12 gap-12 pb-12 border-b border-[#1a1a1a]/20">
           <div className="lg:col-span-5">
