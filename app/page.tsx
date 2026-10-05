@@ -120,11 +120,11 @@ export default function Home() {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
+          {/* <div className="hidden lg:flex items-center gap-3 shrink-0">
             <a href="https://wa.me/254792415615" target="_blank" rel="noopener noreferrer" className="bg-[#3FA89A] text-[#1a1a1ad5] px-6 py-3 text-sm uppercase tracking-wider font-bold hover:bg-[#3FA89A] transition-colors rounded-md">
               Get a Quote
             </a>
-          </div>
+          </div> */}
 
           <button className="lg:hidden p-2 text-neutral-800" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
