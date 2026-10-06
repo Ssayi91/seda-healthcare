@@ -211,7 +211,7 @@ export default function Departments() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-[#3FA89A] transition-all shadow-sm">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center shrink-0">
-            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-10 md:h-12 w-auto" />
+            <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-35 md:h-45 w-auto" />
           </Link>
           
           <nav className="hidden lg:flex flex-1 justify-center items-center gap-10">
