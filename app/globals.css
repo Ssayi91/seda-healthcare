@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3FA89A;
+  --color-primary-ink: #2d7d73;
+  --color-secondary: #6B6F73;
+  --color-dark: #1a1a1a;
+  --color-paper: #F5F1E8;
+  --color-paper-dark: #EDE7D7;
+  --color-ink: #0f0f0f;
+  
+  --font-display: var(--font-display), "Georgia", serif;
+  --font-serif: var(--font-serif), "Georgia", serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-feature-settings: "liga", "dlig";
+}
+
+.small-caps {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.editorial-rule {
+  border: 0;
+  border-top: 1px solid var(--color-dark);
+  opacity: 0.15;
+  margin: 0;
+}
+
+/* Hide scrollbar for clean horizontal scrolling */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
