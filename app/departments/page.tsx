@@ -202,7 +202,7 @@ export default function Departments() {
             </a>
           </div>
           <div className="hidden sm:flex items-center gap-2 text-white/80">
-            <MapPin size={14} /> Utawala, Nairobi
+            <MapPin size={14} /> Springfield Green Court, Kibiku Road, Utawala-Eastern Bypass
           </div>
         </div>
       </div>
