@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Footer from "../components/footer";
-import { usePathname } from "next/navigation";
-// import TopBar from "../components/TopBar";  
 import {
   Phone,
   MapPin,
@@ -28,7 +26,6 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const pathname = usePathname();
 
   const slides = [
     { img: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790614742/diagnostic-lab-equipment-categories-pathology-clinical-automation-tools_wmmphr.webp", title: "Laboratory & Diagnostics", desc: "Reliable equipment for accurate clinical testing." },
@@ -89,16 +86,16 @@ export default function Home() {
         .animate-marquee:hover { animation-play-state: paused; }
       `}</style>
 
-        {/* ========================================================= TOP CONTACT BAR ========================================================== */}
-      <div className="bg-[#3FA89A] text-white py-2.5">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs font-semibold tracking-wide">
-          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-1">
-            <a href="tel:+254792415615" className="flex items-center gap-1.5 hover:text-white/80 transition-colors"><Phone size={12} /> +254 792 415 615</a>
-            <a href="tel:+254721209699" className="flex items-center gap-1.5 hover:text-white/80 transition-colors"><Phone size={12} /> +254 721 209 699</a>
-            <a href="mailto:sales@sedahealthcare.co.ke" className="hidden md:flex items-center gap-1.5 hover:text-white/80 transition-colors"><Mail size={12} /> sales@sedahealthcare.co.ke</a>
-            <span className="hidden lg:flex items-center gap-1.5 text-white/90"><MapPin size={12} /> Springfield Green Court, Kibiku Road, Utawala-Eastern Bypass.</span>
+      {/* ========================================================= TOP CONTACT BAR ========================================================== */}
+      <div className="bg-[#3FA89A] text-[#1a1a1ad5] py-3">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs sm:text-sm font-semibold tracking-wide">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2">
+            <a href="tel:+254792415615" className="flex items-center gap-2 hover:text-white/80 transition-colors"><Phone size={14} /> +254 792 415 615</a>
+            <a href="tel:+254721209699" className="flex items-center gap-2 hover:text-white/80 transition-colors"><Phone size={14} /> +254 721 209 699</a>
+            <a href="mailto:sales@sedahealthcare.co.ke" className="hidden md:flex items-center gap-2 hover:text-white/80 transition-colors"><Mail size={14} /> sales@sedahealthcare.co.ke</a>
+            <span className="hidden lg:flex items-center gap-2 text-[#1a1a1ad5]"><MapPin size={14} /> Springfield Green Court, Kibiku Road, Utawala-Eastern Bypass.</span>
           </div>
-          <div className="hidden sm:block text-white/90 text-[11px] font-medium">Mon – Fri · 08:00 – 17:00 EAT</div>
+          {/* <div className="hidden sm:block text-[#1a1a1ad5] text-xs font-bold">Mon – Fri · 08:00 – 17:00 EAT</div> */}
         </div>
       </div>
 
@@ -110,30 +107,19 @@ export default function Home() {
             <img src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" alt="Seda Healthcare" className="h-35 md:h-45 w-auto" />
           </a>
           
-                   <nav className="hidden lg:flex flex-1 justify-center items-center gap-10">
-            {[
-              { name: "Home", href: "/", path: "/" },
-              { name: "About Us", href: "/about", path: "/about" },
-              { name: "Catalog", href: "/departments", path: "/departments" },
-              { name: "Contact", href: "#partner-with-us", path: "/" },
-            ].map((item) => {
-              const isActive = item.path === pathname && item.name !== "Contact";
-              
-              return (
-                <a 
-                  key={item.name} 
-                  href={item.href} 
-                  className={`transition-colors text-sm font-semibold tracking-wide ${
-                    isActive 
-                      ? "text-[#3FA89A]" 
-                      : "text-neutral-800 hover:text-[#3FA89A]"
-                  }`}
-                >
-                  {item.name}
-                </a>
-              );
-            })}
+                  {/* Refined, premium navbar content */}
+          <nav className="hidden lg:flex flex-1 justify-center items-center gap-8 xl:gap-12">
+            {["Home", "About Us", "Catalog", "Contact"].map((item) => (
+              <a 
+                key={item} 
+                href={item === "Catalog" ? "/departments" : item === "About Us" ? "/about" : item === "Contact" ? "#partner-with-us" : "#home"} 
+                className="text-neutral-800 hover:text-[#3FA89A] transition-colors text-base font-semibold tracking-wide"
+              >
+                {item}
+              </a>
+            ))}
           </nav>
+
           {/* <div className="hidden lg:flex items-center gap-3 shrink-0">
             <a href="https://wa.me/254792415615" target="_blank" rel="noopener noreferrer" className="bg-[#3FA89A] text-[#1a1a1ad5] px-6 py-3 text-sm uppercase tracking-wider font-bold hover:bg-[#3FA89A] transition-colors rounded-md">
               Get a Quote
