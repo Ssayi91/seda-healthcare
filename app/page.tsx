@@ -418,7 +418,7 @@ export default function Home() {
         </div>
       </section>
 
-       {/* Reviews Section with Google Integration */}
+           {/* Reviews Section with Google Integration */}
       <section className="relative py-20 sm:py-28 parallax" style={{ backgroundImage: "url('https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/hospital-bed_yaxees.jpg')" }}>
         <div className="absolute inset-0 bg-gradient-to-br from-[#0B3D35]/95 via-[#0B3D35]/90 to-[#3FA89A]/90" />
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
@@ -437,6 +437,7 @@ export default function Home() {
                 <p className="text-white/90 text-sm leading-relaxed mb-6 italic">"{review.text}"</p>
                 <div>
                   <p className="font-bold text-white text-sm">{review.name}</p>
+                  <p className="text-[10px] text-white/60 uppercase tracking-wider mt-1">{review.facility}</p>
                 </div>
               </div>
             ))}
@@ -452,16 +453,19 @@ export default function Home() {
               Help us serve you better! Leave a review on Google and share your experience with Seda Healthcare. Your feedback helps us improve and helps others make informed decisions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {/* UPDATED: Actual Google Review Link */}
               <a 
-                href="https://g.page/r/YOUR_GOOGLE_PAGE_ID/review" 
+                href="https://g.page/r/CapJSTdZRAu1EBM/review" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-white text-[#3FA89A] px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-neutral-100 transition-colors rounded-xl shadow-lg"
               >
                 <Star size={18} fill="currentColor" /> Leave a Google Review
               </a>
+              
+              {/* Permanent Google Maps Link for Reading Reviews */}
               <a 
-                href="https://www.google.com/search?q=seda+healthcare&sxsrf=APpeQnsQa2dRGYWW1zNbohIy4R66B61FSA%3A1791359481969&gs_ssp=eJzj4tVP1zc0zDI0LE_PNY83YLRSNagwtDBKM0tJTjI0MUy0SDUytTKoSDI1SDIxMbU0NjexNLFMTPTiL05NSVTISE3MKclITixKBQC6OBSN#lrd=0x182f6dcb141a8e25:0xb50b4459374949aa,3,,,," 
+                href="https://www.google.com/maps/search/Seda+Healthcare+Solutions+Ltd" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors rounded-xl"
@@ -472,7 +476,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
 
       {/* FAQ Section */}
       <section className="relative overflow-hidden bg-[#3FA89A] py-20 sm:py-28">
