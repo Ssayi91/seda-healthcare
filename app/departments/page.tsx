@@ -1,28 +1,34 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import Footer from "../../components/footer";
 import { 
-  Search, MessageCircle, ShoppingCart, X, Minus, Plus, Trash2,
-  Phone, Mail, MapPin, Menu, FlaskConical, Scissors, Baby, Scan, Bed, Bone, Package, ChevronDown
+  Search, MessageCircle, ShoppingCart, X, Minus, Plus, Trash2, ChevronDown,
+  Phone, Mail, MapPin, Menu, FlaskConical, Scissors, Baby, Scan, Bed, Bone, Package
 } from "lucide-react";
 
 type CartItem = { name: string; category: string; qty: number };
 
 export default function Departments() {
-  const [searchQuery, setSearchQuery] = useState("");
+  // Separated input state from active search state
+  const [inputQuery, setInputQuery] = useState("");
+  const [activeSearch, setActiveSearch] = useState("");
+  
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [expandedSubcats, setExpandedSubcats] = useState<Record<string, boolean>>({});
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       const initialSearch = params.get('search') || "";
-      setSearchQuery(initialSearch);
+      setInputQuery(initialSearch);
+      setActiveSearch(initialSearch); // Triggers search on load if URL has param
       
       const savedCart = localStorage.getItem('seda_cart');
       if (savedCart) { 
@@ -36,6 +42,10 @@ export default function Departments() {
       localStorage.setItem('seda_cart', JSON.stringify(cartItems)); 
     }
   }, [cartItems]);
+
+  const handleSearch = () => {
+    setActiveSearch(inputQuery);
+  };
 
   const addToCart = (name: string, category: string) => {
     setCartItems(prev => {
@@ -149,9 +159,10 @@ export default function Departments() {
     }
   ];
 
+  // Filter based on activeSearch, NOT inputQuery
   const filteredCategories = useMemo(() => {
-    if (!searchQuery.trim()) return categories;
-    const query = searchQuery.toLowerCase();
+    if (!activeSearch.trim()) return categories;
+    const query = activeSearch.toLowerCase();
     return categories.map(cat => {
       const filteredSubcats = cat.subcategories.map(sub => ({ 
         ...sub, 
@@ -164,11 +175,26 @@ export default function Departments() {
       }
       return null;
     }).filter(Boolean) as typeof categories;
-  }, [searchQuery, categories]);
+  }, [activeSearch, categories]);
 
   const totalItemsFound = useMemo(() => 
     filteredCategories.reduce((acc, cat) => acc + cat.subcategories.reduce((subAcc, sub) => subAcc + sub.items.length, 0), 0), 
   [filteredCategories]);
+
+  // Only scroll when activeSearch changes (i.e., user explicitly searched)
+  useEffect(() => {
+    if (activeSearch.trim() && totalItemsFound > 0) {
+      const timer = setTimeout(() => {
+        const firstMatch = document.querySelector('[data-search-item="true"]');
+        if (firstMatch) {
+          firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else if (resultsRef.current) {
+          resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 250);
+      return () => clearTimeout(timer);
+    }
+  }, [activeSearch, totalItemsFound]);
 
   const toggleSubcat = (catId: string, subIndex: number) => {
     const key = `${catId}-${subIndex}`;
@@ -275,17 +301,40 @@ export default function Departments() {
             <input 
               type="text" 
               placeholder="Search equipment (e.g., 'Vacutainer', 'Autoclave')..." 
-              value={searchQuery} 
-              onChange={(e) => setSearchQuery(e.target.value)} 
-              className="w-full pl-12 pr-12 py-4 bg-white/10 border-2 border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:border-[#3FA89A] focus:bg-white/20 transition-colors shadow-lg backdrop-blur-sm rounded-xl text-sm sm:text-base" 
+              value={inputQuery} 
+              onChange={(e) => setInputQuery(e.target.value)} 
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleSearch();
+                }
+              }}
+              className="w-full pl-12 pr-20 py-4 bg-white/10 border-2 border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:border-[#3FA89A] focus:bg-white/20 transition-colors shadow-lg backdrop-blur-sm rounded-xl text-sm sm:text-base" 
             />
-            {searchQuery && (
-              <button onClick={() => setSearchQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors">
-                <X size={20} />
+            
+            {/* Clear Button */}
+            {inputQuery && (
+              <button 
+                onClick={() => { setInputQuery(""); setActiveSearch(""); }} 
+                className="absolute right-12 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors p-1"
+                aria-label="Clear search"
+              >
+                <X size={18} />
               </button>
             )}
+            
+            {/* Execute Search Button */}
+            <button 
+              onClick={handleSearch} 
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-[#3FA89A] text-white p-2.5 rounded-lg hover:bg-[#0B3D35] transition-colors shadow-lg"
+              aria-label="Execute Search"
+              title="Search"
+            >
+              <Search size={20} />
+            </button>
           </div>
-          {searchQuery.trim() && (
+          
+          {activeSearch.trim() && (
             <div className="mt-4 text-sm font-medium text-white/80">
               Found <span className="text-[#3FA89A] font-bold">{totalItemsFound}</span> items.
             </div>
@@ -325,7 +374,7 @@ export default function Departments() {
       </div>
 
       {/* Categories with Parallax Banners */}
-      <div className="space-y-8 pb-20">
+      <div className="space-y-8 pb-20" ref={resultsRef}>
         {visibleCategories.map((cat) => {
           const CategoryIcon = cat.icon;
           return (
@@ -347,17 +396,20 @@ export default function Departments() {
                 </div>
               </div>
 
-              {/* Subcategories Grid - KEY FIX: items-start prevents stretching */}
+              {/* Subcategories Grid */}
               <div className="bg-gradient-to-b from-[#3FA89A]/5 to-white py-12 sm:py-20 border-b-2 border-[#3FA89A]/20">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 max-w-6xl mx-auto items-start">
                     {cat.subcategories.map((sub, subIdx) => {
                       const key = `${cat.id}-${subIdx}`;
-                      const isExpanded = expandedSubcats[key] !== undefined ? expandedSubcats[key] : (subIdx === 0 && !searchQuery);
+                      
+                      // Auto-expand all subcategories ONLY when an active search is performed
+                      const isExpanded = activeSearch.trim() 
+                        ? true 
+                        : (expandedSubcats[key] !== undefined ? expandedSubcats[key] : subIdx === 0);
                       
                       return (
                         <div key={subIdx} className="relative bg-white/80 backdrop-blur-sm border-2 border-[#3FA89A]/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[#3FA89A]/10 transition-all duration-300 h-fit">
-                          {/* Faded Background Image */}
                           <div 
                             className="absolute inset-0 bg-cover bg-center opacity-[0.03] pointer-events-none"
                             style={{ backgroundImage: `url('${cat.image}')` }}
@@ -377,7 +429,11 @@ export default function Departments() {
                                 {sub.items.map((item, idx) => {
                                   const cartItem = cartItems.find(i => i.name === item);
                                   return (
-                                    <div key={idx} className="flex items-center justify-between py-2.5 group/item">
+                                    <div 
+                                      key={idx} 
+                                      data-search-item={activeSearch.trim() ? "true" : "false"}
+                                      className="flex items-center justify-between py-2.5 group/item scroll-mt-52"
+                                    >
                                       <span className="text-sm text-neutral-700 font-medium pr-4 leading-snug flex-1">{item}</span>
                                       
                                       {!cartItem ? (
