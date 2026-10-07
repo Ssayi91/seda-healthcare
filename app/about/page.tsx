@@ -340,7 +340,7 @@ export default function About() {
                 <p className="text-neutral-700 text-sm leading-relaxed mb-6 italic">"{review.text}"</p>
                 <div>
                   <p className="font-bold text-neutral-900 text-sm">{review.name}</p>
-                  <p className="text-[10px] text-neutral-500 uppercase tracking-wider mt-1">{review.facility}</p>
+                  <p className="text-[10px] text-neutral-500 uppercase tracking-wider mt-1">{review.rating}-star review</p>
                 </div>
               </div>
             ))}

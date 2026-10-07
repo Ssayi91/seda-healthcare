@@ -43,7 +43,7 @@ export default function Footer() {
               <img 
                 src="https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/seda-logo_fvmrpj.png" 
                 alt="Seda Healthcare" 
-                className="h-12 md:h-14 w-auto" 
+                className="h-40 md:h-50 w-auto" 
               />
             </Link>
             <p className="text-neutral-600 leading-relaxed max-w-md text-sm mb-6">
