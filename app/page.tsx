@@ -437,7 +437,6 @@ export default function Home() {
                 <p className="text-white/90 text-sm leading-relaxed mb-6 italic">"{review.text}"</p>
                 <div>
                   <p className="font-bold text-white text-sm">{review.name}</p>
-                  <p className="text-[10px] text-white/60 uppercase tracking-wider mt-1">{review.facility}</p>
                 </div>
               </div>
             ))}
