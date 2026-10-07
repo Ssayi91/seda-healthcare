@@ -27,12 +27,11 @@ export default function About() {
     { src: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790689281/xray_facility_owz1d1.png", caption: "Imaging Center" },
   ];
 
-  const reviews = [
-    { name: "Dr. James M.", facility: "Nairobi West Clinic", text: "Professional installation and excellent equipment support. The team was thorough, efficient, and highly knowledgeable." },
-    { name: "Sarah K.", facility: "Eldoret Regional Hospital", text: "Responsive after-sales support and reliable service. They had replacement parts delivered within 48 hours." },
-    { name: "Dr. David O.", facility: "Mombasa Maternity Center", text: "They helped us equip our new 50-bed wing exactly to our requirements and budget. Highly recommended." }
+ const reviews = [
+    { name: "Racheal Sarota.",text: "Amazing customer service. I received my items in great condition but would highly recommend to improve on delivery time. I appreciated the user training they gave me after purchasing a BP machine for my dad. Thank you.", rating: 5 },
+    { name: "francis munyua.", text: "Best after sale services I have experienced so far. Thank you Seda.", rating: 5 },
+    { name: "Fredrick Kariuki.", text: "Customer care-check,Reasonable prices-check,Quality products-check,Reliability-check.", rating: 5 },
   ];
-
   return (
     <main className="bg-white text-neutral-900 antialiased font-['Montserrat',sans-serif] overflow-x-hidden">
       <style>{`
