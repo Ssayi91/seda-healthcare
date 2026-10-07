@@ -83,9 +83,9 @@ export default function Home() {
   ];
 
   const reviews = [
-    { name: "Dr. James M.", facility: "Nairobi West Clinic", text: "Professional installation and excellent equipment support. The team was thorough, efficient, and highly knowledgeable.", rating: 5 },
-    { name: "Sarah K.", facility: "Eldoret Regional Hospital", text: "Responsive after-sales support and reliable service. They had replacement parts delivered within 48 hours.", rating: 5 },
-    { name: "Dr. David O.", facility: "Mombasa Maternity Center", text: "They helped us equip our new 50-bed wing exactly to our requirements and budget. Highly recommended.", rating: 5 },
+    { name: "Racheal Sarota.",text: "Amazing customer service. I received my items in great condition but would highly recommend to improve on delivery time. I appreciated the user training they gave me after purchasing a BP machine for my dad. Thank you.", rating: 5 },
+    { name: "francis munyua.", text: "Best after sale services I have experienced so far. Thank you Seda.", rating: 5 },
+    { name: "Fredrick Kariuki.", text: "Customer care-check,Reasonable prices-check,Quality products-check,Reliability-check.", rating: 5 },
   ];
 
   const scrapbookImages = [
@@ -437,7 +437,6 @@ export default function Home() {
                 <p className="text-white/90 text-sm leading-relaxed mb-6 italic">"{review.text}"</p>
                 <div>
                   <p className="font-bold text-white text-sm">{review.name}</p>
-                  <p className="text-[10px] text-white/60 uppercase tracking-wider mt-1">{review.facility}</p>
                 </div>
               </div>
             ))}
@@ -462,7 +461,7 @@ export default function Home() {
                 <Star size={18} fill="currentColor" /> Leave a Google Review
               </a>
               <a 
-                href="https://www.google.com/search?q=Seda+Healthcare+Kenya+reviews" 
+                href="https://www.google.com/search?q=seda+healthcare&sxsrf=APpeQnsQa2dRGYWW1zNbohIy4R66B61FSA%3A1791359481969&gs_ssp=eJzj4tVP1zc0zDI0LE_PNY83YLRSNagwtDBKM0tJTjI0MUy0SDUytTKoSDI1SDIxMbU0NjexNLFMTPTiL05NSVTISE3MKclITixKBQC6OBSN#lrd=0x182f6dcb141a8e25:0xb50b4459374949aa,3,,,," 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors rounded-xl"
