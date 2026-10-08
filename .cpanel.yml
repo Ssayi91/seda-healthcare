@@ -1,4 +1,6 @@
 ---
 deployment:
   tasks:
-    - cd /home/sedaheal/repositories/seda-healthcare && npm run build
+    - export PATH=/home/sedaheal/nodevenv/repositories/seda-healthcare/24/bin:$PATH
+    - cd /home/sedaheal/repositories/seda-healthcare
+    - npm run build
