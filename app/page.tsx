@@ -71,6 +71,12 @@ export default function Home() {
     { name: "Standex", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229704/Screenshot_from_2026-10-05_22-41-49-removebg-preview_d8jjdy.png" },
     { name: "Partner 5", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229705/4-WhatsApp_Image_2026-10-05_at_2.35.20_PM-removebg-preview_ksecmv.png" },
     { name: "Partner 6", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229704/Screenshot_from_2026-10-05_22-41-39-removebg-preview_jatp1g.png" },
+    { name: "Partner 7", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229705/1-WhatsApp_Image_2026-10-05_at_11.00.47_AM-removebg-preview_br990t.png" },
+    { name: "Partner 8", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229706/Screenshot_from_2026-10-05_22-42-34-removebg-preview_gm94c5.png" },
+    { name: "Partner 9", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229705/Screenshot_from_2026-10-05_22-42-28-removebg-preview_vqdpis.png" },
+    { name: "Partner 10", logo: "https://lambtechnologies.com/cdn/shop/files/DRGEM.png?v=1746731558&width=536" },
+    { name: "Partner 11", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791446961/Screenshot_from_2026-10-08_11-08-04-removebg-preview_dopxha.png"},
+    { name: "Partner 12", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791447358/Screenshot_from_2026-10-08_11-15-22-removebg-preview_tdeede.png"},
   ];
 
   const departments = [
@@ -83,9 +89,9 @@ export default function Home() {
   ];
 
   const reviews = [
-    { name: "Racheal Sarota.",text: "Amazing customer service. I received my items in great condition but would highly recommend to improve on delivery time. I appreciated the user training they gave me after purchasing a BP machine for my dad. Thank you.", rating: 5 },
+    { name: "Racheal Sarota.", text: "Amazing customer service. I received my items in great condition but would highly recommend to improve on delivery time. I appreciated the user training they gave me after purchasing a BP machine for my dad. Thank you.", rating: 5 },
     { name: "francis munyua.", text: "Best after sale services I have experienced so far. Thank you Seda.", rating: 5 },
-    { name: "Fredrick Kariuki.", text: "Customer care-check,Reasonable prices-check,Quality products-check,Reliability-check.", rating: 5 },
+    { name: "Fredrick Kariuki.", text: "Customer care-check, Reasonable prices-check, Quality products-check, Reliability-check.", rating: 5 },
   ];
 
   const scrapbookImages = [
@@ -108,6 +114,9 @@ export default function Home() {
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
         @keyframes slowZoom { 0% { transform: scale(1.05); } 50% { transform: scale(1.1); } 100% { transform: scale(1.05); } }
         .hero-image { animation: slowZoom 15s ease-in-out infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-33.333%); } }
+        .animate-marquee { animation: marquee 40s linear infinite; }
+        .animate-marquee:hover { animation-play-state: paused; }
         .parallax { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
         @media (max-width: 768px) { .parallax { background-attachment: scroll; } }
         .scrapbook-shadow { box-shadow: 3px 3px 15px rgba(0,0,0,0.15); }
@@ -119,27 +128,20 @@ export default function Home() {
         <p>Kenya's trusted provider of medical equipment, laboratory diagnostics, surgical instruments, and healthcare solutions. KEBS certified with nationwide delivery and installation.</p>
       </div>
 
-         {/* Top Contact Bar */}
+      {/* Top Contact Bar */}
       <div className={`bg-[#0B3D35] text-white py-2.5 text-xs sm:text-sm transition-all duration-300 ${scrolled ? 'py-2' : ''}`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0 font-medium tracking-wide">
           <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2">
-            {/* Primary Phone - Clickable Dialer */}
             <a href="tel:+254792415615" className="flex items-center gap-2 hover:text-[#3FA89A] transition-colors">
               <Phone size={14} /> <span>+254 792 415 615</span>
             </a>
-            
-            {/* Secondary Phone - Clickable Dialer */}
             <a href="tel:+254721209699" className="flex items-center gap-2 hover:text-[#3FA89A] transition-colors">
               <Phone size={14} /> <span>+254 721 209 699</span>
             </a>
-            
-            {/* Email - Clickable Mail Client */}
             <a href="mailto:sales@sedahealthcare.co.ke" className="hidden md:flex items-center gap-2 hover:text-[#3FA89A] transition-colors">
               <Mail size={14} /> sales@sedahealthcare.co.ke
             </a>
           </div>
-          
-          {/* Location */}
           <div className="hidden sm:flex items-center gap-2 text-white/80">
             <MapPin size={14} /> Springfield Green Court, Kibiku Road, Utawala-Eastern Bypass
           </div>
@@ -354,20 +356,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="py-16 bg-neutral-50 border-y border-neutral-100">
+      {/* Partners Section - Carousel Motion */}
+      <section className="py-16 bg-neutral-50 border-y border-neutral-100 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 mb-8">
           <span className="text-neutral-400 text-[10px] uppercase tracking-[0.2em] font-bold block text-center">Trusted Global Partners</span>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-          {partners.map((partner, i) => (
-            <div key={i} className="bg-white border border-neutral-100 rounded-xl p-6 flex items-center justify-center hover:shadow-md transition-shadow duration-300">
-              <img src={partner.logo} alt={partner.name} className="max-h-16 w-auto" />
-            </div>
-          ))}
+        <div className="relative w-full">
+          <div className="flex animate-marquee w-max">
+            {/* Duplicated 3 times to ensure a seamless, infinite loop without gaps */}
+            {[...partners, ...partners, ...partners].map((partner, i) => (
+              <div key={i} className="flex items-center justify-center w-40 sm:w-56 px-4 sm:px-8">
+                <img 
+                  src={partner.logo} 
+                  alt={partner.name} 
+                  className="max-h-16 sm:max-h-20 w-auto" 
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-
      
       {/* About / Mission CTA */}
       <section id="partner-with-us" className="relative py-24 sm:py-32 bg-white overflow-hidden">
@@ -418,7 +426,7 @@ export default function Home() {
         </div>
       </section>
 
-           {/* Reviews Section with Google Integration */}
+      {/* Reviews Section with Google Integration */}
       <section className="relative py-20 sm:py-28 parallax" style={{ backgroundImage: "url('https://res.cloudinary.com/dzyxm0rhg/image/upload/v1790609564/hospital-bed_yaxees.jpg')" }}>
         <div className="absolute inset-0 bg-gradient-to-br from-[#0B3D35]/95 via-[#0B3D35]/90 to-[#3FA89A]/90" />
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
@@ -452,7 +460,6 @@ export default function Home() {
               Help us serve you better! Leave a review on Google and share your experience with Seda Healthcare. Your feedback helps us improve and helps others make informed decisions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {/* UPDATED: Actual Google Review Link */}
               <a 
                 href="https://g.page/r/CapJSTdZRAu1EBM/review" 
                 target="_blank" 
@@ -462,7 +469,6 @@ export default function Home() {
                 <Star size={18} fill="currentColor" /> Leave a Google Review
               </a>
               
-              {/* Permanent Google Maps Link for Reading Reviews */}
               <a 
                 href="https://www.google.com/maps/search/Seda+Healthcare+Solutions+Ltd" 
                 target="_blank" 

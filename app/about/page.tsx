@@ -11,13 +11,19 @@ import { useState } from "react";
 export default function About() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const partners = [
+ const partners = [
     { name: "Mindray", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229703/Screenshot_from_2026-10-05_22-42-47-removebg-preview_kd3pkx.png" },
     { name: "Biosystems", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229703/Screenshot_from_2026-10-05_22-42-05-removebg-preview_eddrbz.png" },
     { name: "Floatex", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229704/Screenshot_from_2026-10-05_22-42-13-removebg-preview_lzw9ix.png" },
     { name: "Standex", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229704/Screenshot_from_2026-10-05_22-41-49-removebg-preview_d8jjdy.png" },
     { name: "Partner 5", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229705/4-WhatsApp_Image_2026-10-05_at_2.35.20_PM-removebg-preview_ksecmv.png" },
     { name: "Partner 6", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229704/Screenshot_from_2026-10-05_22-41-39-removebg-preview_jatp1g.png" },
+    { name: "Partner 7", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229705/1-WhatsApp_Image_2026-10-05_at_11.00.47_AM-removebg-preview_br990t.png" },
+    { name: "Partner 8", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229706/Screenshot_from_2026-10-05_22-42-34-removebg-preview_gm94c5.png" },
+    { name: "Partner 9", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791229705/Screenshot_from_2026-10-05_22-42-28-removebg-preview_vqdpis.png" },
+    { name: "Partner 10", logo: "https://lambtechnologies.com/cdn/shop/files/DRGEM.png?v=1746731558&width=536" },
+    { name: "Partner 11", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791446961/Screenshot_from_2026-10-08_11-08-04-removebg-preview_dopxha.png"},
+    { name: "Partner 12", logo: "https://res.cloudinary.com/dzyxm0rhg/image/upload/v1791447358/Screenshot_from_2026-10-08_11-15-22-removebg-preview_tdeede.png"},
   ];
 
   const scrapbookImages = [
