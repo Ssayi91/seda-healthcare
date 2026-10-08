@@ -1,0 +1,4 @@
+---
+deployment:
+  tasks:
+    - cd /home/sedaheal/repositories/seda-healthcare && npm run build
