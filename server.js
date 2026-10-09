@@ -7,5 +7,7 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   createServer((req, res) => {
     handle(req, res);
-  }).listen(process.env.PORT || 3000);
+  }).listen(process.env.PORT || 3000, "0.0.0.0", () => {
+    console.log("Seda Healthcare running");
+  });
 });

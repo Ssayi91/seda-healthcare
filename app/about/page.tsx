@@ -134,10 +134,10 @@ export default function About() {
               </h2>
               <div className="space-y-5 text-base text-neutral-600 leading-relaxed">
                 <p>
-                  Seda Labs Solutions is a Kenyan-based company specializing in the distribution of a wide range of medical equipment and consumables. We are experts in hospital laboratory setups and medical consumables, serving hospitals, clinics, and research institutions across the region.
+                  Seda Healthcare is a Kenyan-based company specializing in the distribution of a wide range of medical equipment and consumables. We are experts in hospital laboratory setups and medical consumables, serving hospitals, clinics, and research institutions across the region.
                 </p>
                 <p>
-                  Our business was built on a foundation of medical expertise, excellent client service, and a relentless pursuit of medical and clinical innovation. Today, this desire to constantly improve and grow remains an integral part of the Seda Labs Solutions culture.
+                  Our business was built on a foundation of medical expertise, excellent client service, and a relentless pursuit of medical and clinical innovation. Today, this desire to constantly improve and grow remains an integral part of the Seda Healthcare culture.
                 </p>
               </div>
             </div>
